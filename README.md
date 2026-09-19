@@ -1,31 +1,24 @@
-# Mini Kanban UI
+# Depthboard — Spatial Kanban
 
-A compact, responsive Kanban-board demonstration made with plain HTML, CSS and JavaScript. It provides a simple visual workflow without requiring a framework or build process.
+A polished 3D task board designed to make project momentum clear and satisfying.
 
-## Features
+## Highlights
 
-- Three workflow stages: To do, In progress and Done
-- Add tasks from the page header
-- Move a task by clicking it
-- Responsive single-column layout on small screens
-- No external dependencies
+- Three-stage workflow: Queue, In motion, and Complete
+- Click cards or use Enter/Space to advance work
+- Add tasks with persistent browser storage
+- Safe DOM rendering using `textContent`
+- Dimensional columns, raised task cards, lighting, and depth
+- Responsive stacked mobile layout with zero dependencies
 
 ## Run locally
-
-Open `index.html` in a modern browser, or start a local server:
 
 ```bash
 python -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
+Open `http://localhost:8000`.
 
-## Project structure
+## Stack
 
-```text
-.
-├── index.html   # UI, styles and board interaction
-└── README.md    # Documentation
-```
-
-This is a front-end UI model. Tasks are kept in memory and reset when the page reloads.
+Semantic HTML, modern CSS, vanilla JavaScript, and localStorage.
