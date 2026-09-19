@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Kanban</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:#10131a;color:#f5f7fb}main{width:min(1100px,94%);margin:40px auto}header{display:flex;justify-content:space-between;align-items:center;gap:16px}input,button{font:inherit;padding:11px 14px;border-radius:10px;border:1px solid #343a49}input{background:#181d27;color:white;min-width:260px}button{background:#6c63ff;color:white;border:0;font-weight:700;cursor:pointer}.board{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}.column{background:#171b24;border:1px solid #2b3140;border-radius:18px;padding:15px;min-height:320px}.column h2{font-size:1rem;color:#aeb8cb}.task{background:#242a37;border-radius:12px;padding:14px;margin:10px 0;cursor:pointer}.task small{color:#8994a9}.hint{color:#8994a9}@media(max-width:760px){header{align-items:flex-start;flex-direction:column}.board{grid-template-columns:1fr}input{min-width:0;width:100%}}
+  </style>
+</head>
+<body>
+  <main><header><div><h1>Mini Kanban</h1><p class="hint">Click a task to move it to the next stage.</p></div><form id="form"><input id="title" placeholder="Add a task" required><button>Add</button></form></header><section class="board" id="board"></section></main>
+  <script>
+    const stages=['To do','In progress','Done']; let tasks=[{title:'Sketch dashboard layout',stage:0},{title:'Build responsive cards',stage:1},{title:'Publish project README',stage:2}];
+    function render(){board.innerHTML=stages.map((s,i)=>'<div class="column"><h2>'+s+' · '+tasks.filter(t=>t.stage===i).length+'</h2>'+tasks.filter(t=>t.stage===i).map(t=>'<div class="task" data-title="'+t.title+'"><strong>'+t.title+'</strong><br><small>Click to advance</small></div>').join('')+'</div>').join('');document.querySelectorAll('.task').forEach(el=>el.onclick=()=>move(el.dataset.title))}
+    function move(name){const t=tasks.find(x=>x.title===name);t.stage=(t.stage+1)%3;render()} form.onsubmit=e=>{e.preventDefault();tasks.push({title:title.value.trim(),stage:0});form.reset();render()};render();
+  </script>
+</body>
+</html>
